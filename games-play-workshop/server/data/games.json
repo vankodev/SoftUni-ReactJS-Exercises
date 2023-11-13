@@ -1,0 +1,18 @@
+{
+    "70942ab5-c975-4de0-a6ec-d36fb4ab49b3": {
+        "title": "WoW",
+        "category": "mmorpg",
+        "maxLevel": "60",
+        "imageUrl": "https://gameranx.com/wp-content/uploads/2022/06/WOW-Dragonflight.jpg",
+        "summary": "forget about the real world",
+        "_id": "70942ab5-c975-4de0-a6ec-d36fb4ab49b3"
+    },
+    "40a14717-662b-4068-9a4c-9016fe6488ca": {
+        "title": "NFS",
+        "category": "racing",
+        "maxLevel": "3",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/en/a/a9/Need_for_Speed_2015.jpg",
+        "summary": "be the fastest man alive.",
+        "_id": "40a14717-662b-4068-9a4c-9016fe6488ca"
+    }
+}
