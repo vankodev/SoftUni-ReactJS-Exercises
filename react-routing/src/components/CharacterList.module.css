@@ -1,4 +1,5 @@
-/* .characterList {
+.characterList {
     display: flex;
-    justify-content: space-between;
-} */
+    /* justify-content:  ; */
+    flex-wrap: wrap;
+}
