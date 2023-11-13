@@ -16,8 +16,9 @@ export default function NavBar() {
             <li>
                 <NavLink
                     to="/navlink"
-                    className={styles.link}
-                    activeClassName={styles.active}
+                    className={(isActive) =>
+                        isActive ? styles.activeLink : styles.link
+                    }
                 >
                     NavLink
                 </NavLink>
