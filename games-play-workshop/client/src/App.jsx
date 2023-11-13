@@ -1,7 +1,11 @@
+import Header from "./components/header/Header";
+
 function App() {
     return (
         <>
-            <h1>Game Play Workshop</h1>
+            <div id="box">
+                <Header />
+            </div>
         </>
     );
 }
