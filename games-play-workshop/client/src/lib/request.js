@@ -1,4 +1,4 @@
-const buildOptions = (method, data) => {
+const buildOptions = (data) => {
     const options = {};
 
     if (data) {
@@ -7,6 +7,8 @@ const buildOptions = (method, data) => {
             "content-type": "application/json",
         };
     }
+
+    return options;
 };
 
 const request = async (method, url, data) => {
@@ -14,10 +16,6 @@ const request = async (method, url, data) => {
         ...buildOptions(data),
         method,
     });
-
-    if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-    }
 
     const result = await response.json();
 
