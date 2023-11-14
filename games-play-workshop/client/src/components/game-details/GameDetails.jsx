@@ -7,9 +7,11 @@ import * as commentService from "../../services/commentService";
 export function GameDetails() {
     const { gameId } = useParams();
     const [game, setGame] = useState({});
+    const [comments, setComments] = useState([]);
 
     useEffect(() => {
         gameService.getOne(gameId).then(setGame);
+        commentService.getAll().then(setComments);
     }, [gameId]);
 
     const addCommentHandler = async (e) => {
@@ -41,23 +43,23 @@ export function GameDetails() {
 
                 <p className="text">{game.summary}</p>
 
-                {/* <!-- Bonus ( for Guests and Users ) -->
                 <div className="details-comments">
                     <h2>Comments:</h2>
                     <ul>
-                        <!-- list all comments for current game (If any) -->
-                        <li className="comment">
-                            <p>Content: I rate this one quite highly.</p>
-                        </li>
-                        <li className="comment">
-                            <p>Content: The best game.</p>
-                        </li>
+                        {comments.map(({ username, text, _id }) => (
+                            <li className="comment" key={_id}>
+                                <p>
+                                    {username}: {text}
+                                </p>
+                            </li>
+                        ))}
                     </ul>
-                    <!-- Display paragraph: If there are no games in the database -->
-                    <p className="no-comment">No comments.</p>
+                    {comments.length === 0 && (
+                        <p className="no-comment">No comments.</p>
+                    )}
                 </div>
 
-                <!-- Edit/Delete buttons ( Only for creator of this game )  -->
+                {/* <!-- Edit/Delete buttons ( Only for creator of this game )  -->
                 <div className="buttons">
                     <a href="#" className="button">
                         Edit
