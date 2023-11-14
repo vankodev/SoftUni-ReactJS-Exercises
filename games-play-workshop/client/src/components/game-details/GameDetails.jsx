@@ -27,7 +27,7 @@ export function GameDetails() {
             comment
         );
 
-        console.log(newComment);
+        setComments((state) => [...state, newComment]);
     };
 
     return (
@@ -46,7 +46,7 @@ export function GameDetails() {
                 <div className="details-comments">
                     <h2>Comments:</h2>
                     <ul>
-                        {comments.map(({ username, text, _id }) => (
+                        {comments.map(({ _id, username, text }) => (
                             <li className="comment" key={_id}>
                                 <p>
                                     {username}: {text}
