@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import * as userService from "../services/userService";
 import UserListItem from "./UserListItem";
 import CreateUserModal from "./CreateUserModal";
@@ -6,39 +6,9 @@ import UserInfoModal from "./UserInfoModal";
 
 const UserListTable = () => {
     const [users, setUsers] = useState([]);
-    const [modal, setModal] = useState(false);
-    const [infoModal, setInfoModal] = useState(false);
-
-    const showModal = () => {
-        setModal(true);
-    };
-
-    const closeModal = () => {
-        setModal(false);
-    };
-
-    const showInfoModal = () => {
-        setInfoModal(true);
-    };
-
-    const handleEscKey = useCallback(
-        (event) => {
-            if (modal && event.key === "Escape") {
-                closeModal();
-            }
-        },
-        [modal]
-    );
-
-    const userCreateHandler = async (e) => {
-        e.preventDefault();
-
-        const data = Object.fromEntries(new FormData(e.currentTarget));
-        const newUser = await userService.createUser(data);
-
-        setUsers((state) => [...state, newUser]);
-        closeModal();
-    };
+    const [showCreate, setShowCreate] = useState(false);
+    const [showInfo, setShowInfo] = useState(false);
+    const [selectedUser, setSelectedUser] = useState(null);
 
     useEffect(() => {
         userService
@@ -47,30 +17,45 @@ const UserListTable = () => {
             .catch((err) => console.log(err));
     }, []);
 
-    useEffect(() => {
-        window.addEventListener("keydown", handleEscKey);
+    const createUserClickHandler = () => {
+        setShowCreate(true);
+    };
 
-        return () => {
-            window.removeEventListener("keydown", handleEscKey);
-        };
-    }, [handleEscKey]);
+    const hideCreateUserModal = () => {
+        setShowCreate(false);
+    };
 
-    // useEffect(() => {
-    //     const handleEscKey = (e) => {
-    //         if (e.key === 'Escape') {
-    //             closeModal();
-    //         }
-    //     };
+    const userCreateHandler = async (e) => {
+        e.preventDefault();
 
-    //     window.addEventListener('keydown', handleEscKey);
+        const data = Object.fromEntries(new FormData(e.currentTarget));
+        const newUser = await userService.create(data);
 
-    //     return () => {
-    //         window.removeEventListener('keydown', handleEscKey)
-    //     }
-    // }, [closeModal]);
+        setUsers((state) => [...state, newUser]);
+        hideCreateUserModal();
+    };
+
+    const userInfoClickHandler = async (userId) => {
+        setSelectedUser(userId);
+        setShowInfo(true);
+    };
 
     return (
         <div className="table-wrapper">
+            {showCreate && (
+                <CreateUserModal
+                    onCreate={userCreateHandler}
+                    onClose={hideCreateUserModal}
+                />
+            )}
+
+            {showInfo && (
+                <UserInfoModal
+                    userId={selectedUser}
+                    onClose={() => setShowInfo(false)}
+                />
+            )}
+
             <div className="unused-code-wrapper">
                 {/* <!-- Overlap components  --> */}
 
@@ -251,19 +236,15 @@ const UserListTable = () => {
                             phoneNumber={user.phoneNumber}
                             createdAt={user.createdAt}
                             imageUrl={user.imageUrl}
-                            onShow={showInfoModal}
+                            onInfoClick={userInfoClickHandler}
                         />
                     ))}
                 </tbody>
             </table>
 
-            <button className="btn-add btn" onClick={showModal}>
+            <button className="btn-add btn" onClick={createUserClickHandler}>
                 Add new user
             </button>
-
-            {infoModal && <UserInfoModal />}
-
-            {modal && <CreateUserModal onClose={closeModal} onUserCreate={userCreateHandler} />}
         </div>
     );
 };

@@ -1,4 +1,4 @@
-const CreateUserModal = ({ onClose, onUserCreate }) => {
+const CreateUserModal = ({ onClose, onCreate }) => {
     return (
         <div className="overlay">
             <div className="backdrop" onClick={onClose}></div>
@@ -24,7 +24,7 @@ const CreateUserModal = ({ onClose, onUserCreate }) => {
                             </svg>
                         </button>
                     </header>
-                    <form onSubmit={onUserCreate}>
+                    <form onSubmit={onCreate}>
                         <div className="form-row">
                             <div className="form-group">
                                 <label htmlFor="firstName">First name</label>
@@ -32,7 +32,11 @@ const CreateUserModal = ({ onClose, onUserCreate }) => {
                                     <span>
                                         <i className="fa-solid fa-user"></i>
                                     </span>
-                                    <input id="firstName" name="firstName" type="text" />
+                                    <input
+                                        id="firstName"
+                                        name="firstName"
+                                        type="text"
+                                    />
                                 </div>
                                 {/* <p className="form-error">
                                     First name should be at least 3 characters
@@ -45,7 +49,11 @@ const CreateUserModal = ({ onClose, onUserCreate }) => {
                                     <span>
                                         <i className="fa-solid fa-user"></i>
                                     </span>
-                                    <input id="lastName" name="lastName" type="text" />
+                                    <input
+                                        id="lastName"
+                                        name="lastName"
+                                        type="text"
+                                    />
                                 </div>
                                 {/* <p className="form-error">
                                     Last name should be at least 3 characters
@@ -61,19 +69,29 @@ const CreateUserModal = ({ onClose, onUserCreate }) => {
                                     <span>
                                         <i className="fa-solid fa-envelope"></i>
                                     </span>
-                                    <input id="email" name="email" type="text" />
+                                    <input
+                                        id="email"
+                                        name="email"
+                                        type="text"
+                                    />
                                 </div>
                                 {/* <p className="form-error">
                                     Email is not valid!
                                 </p> */}
                             </div>
                             <div className="form-group">
-                                <label htmlFor="phoneNumber">Phone number</label>
+                                <label htmlFor="phoneNumber">
+                                    Phone number
+                                </label>
                                 <div className="input-wrapper">
                                     <span>
                                         <i className="fa-solid fa-phone"></i>
                                     </span>
-                                    <input id="phoneNumber" name="phoneNumber" type="text" />
+                                    <input
+                                        id="phoneNumber"
+                                        name="phoneNumber"
+                                        type="text"
+                                    />
                                 </div>
                                 {/* <p className="form-error">
                                     Phone number is not valid!
@@ -87,7 +105,11 @@ const CreateUserModal = ({ onClose, onUserCreate }) => {
                                 <span>
                                     <i className="fa-solid fa-image"></i>
                                 </span>
-                                <input id="imageUrl" name="imageUrl" type="text" />
+                                <input
+                                    id="imageUrl"
+                                    name="imageUrl"
+                                    type="text"
+                                />
                             </div>
                             {/* <p className="form-error">ImageUrl is not valid!</p> */}
                         </div>
@@ -99,7 +121,11 @@ const CreateUserModal = ({ onClose, onUserCreate }) => {
                                     <span>
                                         <i className="fa-solid fa-map"></i>
                                     </span>
-                                    <input id="country" name="country" type="text" />
+                                    <input
+                                        id="country"
+                                        name="country"
+                                        type="text"
+                                    />
                                 </div>
                                 {/* <p className="form-error">
                                     Country should be at least 2 characters
@@ -127,19 +153,29 @@ const CreateUserModal = ({ onClose, onUserCreate }) => {
                                     <span>
                                         <i className="fa-solid fa-map"></i>
                                     </span>
-                                    <input id="street" name="street" type="text" />
+                                    <input
+                                        id="street"
+                                        name="street"
+                                        type="text"
+                                    />
                                 </div>
                                 {/* <p className="form-error">
                                     Street should be at least 3 characters long!
                                 </p> */}
                             </div>
                             <div className="form-group">
-                                <label htmlFor="streetNumber">Street number</label>
+                                <label htmlFor="streetNumber">
+                                    Street number
+                                </label>
                                 <div className="input-wrapper">
                                     <span>
                                         <i className="fa-solid fa-house-chimney"></i>
                                     </span>
-                                    <input id="streetNumber" name="streetNumber" type="text" />
+                                    <input
+                                        id="streetNumber"
+                                        name="streetNumber"
+                                        type="text"
+                                    />
                                 </div>
                                 {/* <p className="form-error">
                                     Street number should be a positive number!
@@ -147,7 +183,11 @@ const CreateUserModal = ({ onClose, onUserCreate }) => {
                             </div>
                         </div>
                         <div id="form-actions">
-                            <button id="action-save" className="btn" type="submit">
+                            <button
+                                id="action-save"
+                                className="btn"
+                                type="submit"
+                            >
                                 Save
                             </button>
                             <button

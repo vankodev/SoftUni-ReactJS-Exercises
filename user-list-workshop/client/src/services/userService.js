@@ -9,7 +9,15 @@ export const getAll = async () => {
     return data;
 };
 
-export const createUser = async (data) => {
+export const getOne = async (userId) => {
+    const response = await fetch(`${baseUrl}/${userId}`);
+    const result = await response.json();
+
+    console.log(1111, result);
+    return result;
+};
+
+export const create = async (data) => {
     const body = {
         firstName: data.firstName,
         lastName: data.lastName,
@@ -35,7 +43,6 @@ export const createUser = async (data) => {
     });
 
     const result = await response.json();
-    console.log(result);
 
     return result;
 };

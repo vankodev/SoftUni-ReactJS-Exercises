@@ -1,4 +1,4 @@
-import Pagination from "./Pagination";
+// import Pagination from "./Pagination";
 import Search from "./Search";
 import UserListTable from "./UserListTable";
 
@@ -9,7 +9,7 @@ const UsersList = () => {
 
             <UserListTable />
 
-            <Pagination />
+            {/* <Pagination /> */}
         </section>
     );
 };

@@ -1,4 +1,4 @@
-import { formatDate } from "../utils/DataUtils";
+import { formatDate } from "../utils/dataUtils";
 
 const UserListItem = ({
     id,
@@ -8,12 +8,20 @@ const UserListItem = ({
     phoneNumber,
     createdAt,
     imageUrl,
-    onShow,
+    onInfoClick,
 }) => {
+    const infoClickHandler = () => {
+        onInfoClick(id);
+    };
+
     return (
         <tr>
             <td>
-                <img src={imageUrl} alt={`${firstName}'s profile`} className="image" />
+                <img
+                    src={imageUrl}
+                    alt={`${firstName}'s profile`}
+                    className="image"
+                />
             </td>
             <td>{firstName}</td>
             <td>{lastName}</td>
@@ -55,7 +63,11 @@ const UserListItem = ({
                         ></path>
                     </svg>
                 </button>
-                <button className="btn info-btn" title="Info" onClick={onShow(id)}>
+                <button
+                    className="btn info-btn"
+                    title="Info"
+                    onClick={infoClickHandler}
+                >
                     <svg
                         aria-hidden="true"
                         focusable="false"
